@@ -35,7 +35,7 @@ if [[ ! -d "$sketch_dir" ]]; then
   exit 1
 fi
 
-if [[ ! -x "$peasycam_bootstrap" ]]; then
+if [[ ! -f "$peasycam_bootstrap" ]]; then
   echo "PeasyCam bootstrap script not found: $peasycam_bootstrap" >&2
   exit 1
 fi
@@ -180,7 +180,7 @@ if [[ "$record_mode" == "loop" || "$record_mode" == "full" ]]; then
   mkdir -p "$frames_dir"
 fi
 
-"$peasycam_bootstrap"
+bash "$peasycam_bootstrap"
 
 mkdir -p "$jvm_error_dir"
 jvm_error_file_flag="-XX:ErrorFile=$jvm_error_dir/hs_err_pid%p.log"
