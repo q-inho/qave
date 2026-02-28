@@ -1,0 +1,251 @@
+{
+  "$defs": {
+    "ClassicalMapEntry": {
+      "additionalProperties": false,
+      "description": "Represent Classical Map Entry.",
+      "properties": {
+        "classical_bit": {
+          "title": "Classical Bit",
+          "type": "integer"
+        },
+        "qubit": {
+          "title": "Qubit",
+          "type": "integer"
+        },
+        "register": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Register"
+        }
+      },
+      "required": [
+        "qubit",
+        "classical_bit"
+      ],
+      "title": "ClassicalMapEntry",
+      "type": "object"
+    },
+    "GateOp": {
+      "additionalProperties": false,
+      "description": "Represent Gate Op.",
+      "properties": {
+        "classical_targets": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Classical Targets"
+        },
+        "controls": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Controls",
+          "type": "array"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "unitary",
+            "measurement",
+            "reset"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "title": "Metadata",
+          "type": "object"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "params": {
+          "items": {
+            "type": "number"
+          },
+          "title": "Params",
+          "type": "array"
+        },
+        "targets": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Targets",
+          "type": "array"
+        },
+        "time_index": {
+          "title": "Time Index",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "name",
+        "targets",
+        "time_index"
+      ],
+      "title": "GateOp",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Represent Quantum Circuit I R.",
+  "properties": {
+    "circuit_id": {
+      "title": "Circuit Id",
+      "type": "string"
+    },
+    "classical_bits": {
+      "title": "Classical Bits",
+      "type": "integer"
+    },
+    "classical_map": {
+      "items": {
+        "$ref": "#/$defs/ClassicalMapEntry"
+      },
+      "title": "Classical Map",
+      "type": "array"
+    },
+    "contract_version": {
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "title": "Metadata",
+      "type": "object"
+    },
+    "moments_or_steps_mode": {
+      "enum": [
+        "moments",
+        "single_gate_steps"
+      ],
+      "title": "Moments Or Steps Mode",
+      "type": "string"
+    },
+    "parameters": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "title": "Parameters",
+      "type": "object"
+    },
+    "qubits": {
+      "title": "Qubits",
+      "type": "integer"
+    },
+    "source_format": {
+      "enum": [
+        "openqasm",
+        "qiskit_qasm",
+        "qiskit_json",
+        "cirq_json"
+      ],
+      "title": "Source Format",
+      "type": "string"
+    },
+    "source_metadata": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "title": "Source Metadata",
+      "type": "object"
+    },
+    "steps": {
+      "items": {
+        "$ref": "#/$defs/GateOp"
+      },
+      "title": "Steps",
+      "type": "array"
+    }
+  },
+  "required": [
+    "contract_version",
+    "circuit_id",
+    "source_format",
+    "qubits",
+    "classical_bits",
+    "steps",
+    "moments_or_steps_mode"
+  ],
+  "title": "QuantumCircuitIR",
+  "type": "object"
+}

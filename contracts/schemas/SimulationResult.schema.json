@@ -1,0 +1,553 @@
+{
+  "$defs": {
+    "BackendCapability": {
+      "additionalProperties": false,
+      "description": "Represent Backend Capability.",
+      "properties": {
+        "backend_id": {
+          "title": "Backend Id",
+          "type": "string"
+        },
+        "max_recommended_qubits": {
+          "title": "Max Recommended Qubits",
+          "type": "integer"
+        },
+        "supports_approximation": {
+          "title": "Supports Approximation",
+          "type": "boolean"
+        },
+        "supports_mixed_state": {
+          "title": "Supports Mixed State",
+          "type": "boolean"
+        },
+        "supports_noise": {
+          "title": "Supports Noise",
+          "type": "boolean"
+        },
+        "supports_pure_state": {
+          "title": "Supports Pure State",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "backend_id",
+        "supports_pure_state",
+        "supports_mixed_state",
+        "supports_noise",
+        "supports_approximation",
+        "max_recommended_qubits"
+      ],
+      "title": "BackendCapability",
+      "type": "object"
+    },
+    "BipartitionEntropy": {
+      "additionalProperties": false,
+      "description": "Represent Bipartition Entropy.",
+      "properties": {
+        "left": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Left",
+          "type": "array"
+        },
+        "right": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Right",
+          "type": "array"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "left",
+        "right",
+        "value"
+      ],
+      "title": "BipartitionEntropy",
+      "type": "object"
+    },
+    "BlochVector": {
+      "additionalProperties": false,
+      "description": "Represent Bloch Vector.",
+      "properties": {
+        "qubit": {
+          "title": "Qubit",
+          "type": "integer"
+        },
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        },
+        "z": {
+          "title": "Z",
+          "type": "number"
+        }
+      },
+      "required": [
+        "qubit",
+        "x",
+        "y",
+        "z"
+      ],
+      "title": "BlochVector",
+      "type": "object"
+    },
+    "ConvergenceInfo": {
+      "additionalProperties": false,
+      "description": "Represent Convergence Info.",
+      "properties": {
+        "converged": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Converged"
+        },
+        "final_delta": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Final Delta"
+        },
+        "iterations": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Iterations"
+        }
+      },
+      "title": "ConvergenceInfo",
+      "type": "object"
+    },
+    "Diagnostic": {
+      "additionalProperties": false,
+      "description": "Represent Diagnostic.",
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ],
+      "title": "Diagnostic",
+      "type": "object"
+    },
+    "EntanglementMetrics": {
+      "additionalProperties": false,
+      "description": "Represent Entanglement Metrics.",
+      "properties": {
+        "bipartition_entropy": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/BipartitionEntropy"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bipartition Entropy"
+        },
+        "mutual_information_edges": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/MutualInformationEdge"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mutual Information Edges"
+        }
+      },
+      "title": "EntanglementMetrics",
+      "type": "object"
+    },
+    "MeasurementHistogramEntry": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Histogram Entry.",
+      "properties": {
+        "outcome": {
+          "title": "Outcome",
+          "type": "string"
+        },
+        "probability": {
+          "title": "Probability",
+          "type": "number"
+        },
+        "samples": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Samples"
+        }
+      },
+      "required": [
+        "outcome",
+        "probability"
+      ],
+      "title": "MeasurementHistogramEntry",
+      "type": "object"
+    },
+    "MeasurementModel": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Model.",
+      "properties": {
+        "mode": {
+          "const": "collapse",
+          "title": "Mode",
+          "type": "string"
+        },
+        "outcomes": {
+          "items": {
+            "$ref": "#/$defs/MeasurementOutcome"
+          },
+          "title": "Outcomes",
+          "type": "array"
+        },
+        "selected_outcome": {
+          "title": "Selected Outcome",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mode",
+        "outcomes",
+        "selected_outcome"
+      ],
+      "title": "MeasurementModel",
+      "type": "object"
+    },
+    "MeasurementOutcome": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Outcome.",
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "probability": {
+          "title": "Probability",
+          "type": "number"
+        }
+      },
+      "required": [
+        "label",
+        "probability"
+      ],
+      "title": "MeasurementOutcome",
+      "type": "object"
+    },
+    "MutualInformationEdge": {
+      "additionalProperties": false,
+      "description": "Represent Mutual Information Edge.",
+      "properties": {
+        "i": {
+          "title": "I",
+          "type": "integer"
+        },
+        "j": {
+          "title": "J",
+          "type": "integer"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "i",
+        "j",
+        "value"
+      ],
+      "title": "MutualInformationEdge",
+      "type": "object"
+    },
+    "ObservableSnapshot": {
+      "additionalProperties": false,
+      "description": "Represent Observable Snapshot.",
+      "properties": {
+        "bloch_vectors": {
+          "items": {
+            "$ref": "#/$defs/BlochVector"
+          },
+          "title": "Bloch Vectors",
+          "type": "array"
+        },
+        "entanglement_metrics": {
+          "$ref": "#/$defs/EntanglementMetrics"
+        },
+        "measurement_histogram": {
+          "items": {
+            "$ref": "#/$defs/MeasurementHistogramEntry"
+          },
+          "title": "Measurement Histogram",
+          "type": "array"
+        },
+        "purity_entropy": {
+          "items": {
+            "$ref": "#/$defs/PurityEntropy"
+          },
+          "title": "Purity Entropy",
+          "type": "array"
+        },
+        "reduced_density_blocks": {
+          "items": {
+            "$ref": "#/$defs/ReducedDensityBlock"
+          },
+          "title": "Reduced Density Blocks",
+          "type": "array"
+        },
+        "snapshot_id": {
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "step_index": {
+          "title": "Step Index",
+          "type": "integer"
+        },
+        "top_k_amplitudes": {
+          "items": {
+            "$ref": "#/$defs/TopKAmplitude"
+          },
+          "title": "Top K Amplitudes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "snapshot_id",
+        "step_index",
+        "bloch_vectors",
+        "purity_entropy",
+        "top_k_amplitudes",
+        "reduced_density_blocks",
+        "entanglement_metrics",
+        "measurement_histogram"
+      ],
+      "title": "ObservableSnapshot",
+      "type": "object"
+    },
+    "PurityEntropy": {
+      "additionalProperties": false,
+      "description": "Represent Purity Entropy.",
+      "properties": {
+        "entropy": {
+          "title": "Entropy",
+          "type": "number"
+        },
+        "purity": {
+          "title": "Purity",
+          "type": "number"
+        },
+        "qubit": {
+          "title": "Qubit",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "qubit",
+        "purity",
+        "entropy"
+      ],
+      "title": "PurityEntropy",
+      "type": "object"
+    },
+    "ReducedDensityBlock": {
+      "additionalProperties": false,
+      "description": "Represent Reduced Density Block.",
+      "properties": {
+        "imag": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "title": "Imag",
+          "type": "array"
+        },
+        "qubits": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Qubits",
+          "type": "array"
+        },
+        "real": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "title": "Real",
+          "type": "array"
+        }
+      },
+      "required": [
+        "qubits",
+        "real",
+        "imag"
+      ],
+      "title": "ReducedDensityBlock",
+      "type": "object"
+    },
+    "StateCheckpoint": {
+      "additionalProperties": false,
+      "description": "Represent State Checkpoint.",
+      "properties": {
+        "state_hash": {
+          "title": "State Hash",
+          "type": "string"
+        },
+        "step_index": {
+          "title": "Step Index",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "step_index",
+        "state_hash"
+      ],
+      "title": "StateCheckpoint",
+      "type": "object"
+    },
+    "TopKAmplitude": {
+      "additionalProperties": false,
+      "description": "Represent Top K Amplitude.",
+      "properties": {
+        "basis": {
+          "title": "Basis",
+          "type": "string"
+        },
+        "magnitude": {
+          "title": "Magnitude",
+          "type": "number"
+        },
+        "phase": {
+          "title": "Phase",
+          "type": "number"
+        }
+      },
+      "required": [
+        "basis",
+        "magnitude",
+        "phase"
+      ],
+      "title": "TopKAmplitude",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Represent Simulation Result.",
+  "properties": {
+    "backend_capability": {
+      "$ref": "#/$defs/BackendCapability"
+    },
+    "contract_version": {
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "convergence": {
+      "$ref": "#/$defs/ConvergenceInfo"
+    },
+    "diagnostics": {
+      "items": {
+        "$ref": "#/$defs/Diagnostic"
+      },
+      "title": "Diagnostics",
+      "type": "array"
+    },
+    "measurement_model": {
+      "$ref": "#/$defs/MeasurementModel"
+    },
+    "observables": {
+      "items": {
+        "$ref": "#/$defs/ObservableSnapshot"
+      },
+      "title": "Observables",
+      "type": "array"
+    },
+    "outputs": {
+      "additionalProperties": true,
+      "title": "Outputs",
+      "type": "object"
+    },
+    "request_id": {
+      "title": "Request Id",
+      "type": "string"
+    },
+    "state_checkpoints": {
+      "items": {
+        "$ref": "#/$defs/StateCheckpoint"
+      },
+      "title": "State Checkpoints",
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "error"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "contract_version",
+    "request_id",
+    "status",
+    "observables",
+    "measurement_model",
+    "backend_capability",
+    "state_checkpoints"
+  ],
+  "title": "SimulationResult",
+  "type": "object"
+}

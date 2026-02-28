@@ -1,0 +1,33 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: ["--markdown-linebreak-ext=md"]
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.0
+    hooks:
+      - id: ruff
+        name: ruff (backend)
+        files: ^backend/(src|tests)/.*\.py$
+      - id: ruff
+        name: ruff (viewer scripts docstrings)
+        args: ["--config=backend/pyproject.toml", "--select=D"]
+        files: ^viewer/scripts/.*\.py$
+
+  - repo: local
+    hooks:
+      - id: structured-headers
+        name: structured header validation
+        entry: python viewer/scripts/check_doc_headers.py --root .
+        language: system
+        pass_filenames: false
+        files: ^(viewer/processing_qave/.*\.pde|viewer/scripts/.*\.sh)$

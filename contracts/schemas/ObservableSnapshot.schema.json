@@ -1,0 +1,312 @@
+{
+  "$defs": {
+    "BipartitionEntropy": {
+      "additionalProperties": false,
+      "description": "Represent Bipartition Entropy.",
+      "properties": {
+        "left": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Left",
+          "type": "array"
+        },
+        "right": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Right",
+          "type": "array"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "left",
+        "right",
+        "value"
+      ],
+      "title": "BipartitionEntropy",
+      "type": "object"
+    },
+    "BlochVector": {
+      "additionalProperties": false,
+      "description": "Represent Bloch Vector.",
+      "properties": {
+        "qubit": {
+          "title": "Qubit",
+          "type": "integer"
+        },
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        },
+        "z": {
+          "title": "Z",
+          "type": "number"
+        }
+      },
+      "required": [
+        "qubit",
+        "x",
+        "y",
+        "z"
+      ],
+      "title": "BlochVector",
+      "type": "object"
+    },
+    "EntanglementMetrics": {
+      "additionalProperties": false,
+      "description": "Represent Entanglement Metrics.",
+      "properties": {
+        "bipartition_entropy": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/BipartitionEntropy"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bipartition Entropy"
+        },
+        "mutual_information_edges": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/MutualInformationEdge"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mutual Information Edges"
+        }
+      },
+      "title": "EntanglementMetrics",
+      "type": "object"
+    },
+    "MeasurementHistogramEntry": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Histogram Entry.",
+      "properties": {
+        "outcome": {
+          "title": "Outcome",
+          "type": "string"
+        },
+        "probability": {
+          "title": "Probability",
+          "type": "number"
+        },
+        "samples": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Samples"
+        }
+      },
+      "required": [
+        "outcome",
+        "probability"
+      ],
+      "title": "MeasurementHistogramEntry",
+      "type": "object"
+    },
+    "MutualInformationEdge": {
+      "additionalProperties": false,
+      "description": "Represent Mutual Information Edge.",
+      "properties": {
+        "i": {
+          "title": "I",
+          "type": "integer"
+        },
+        "j": {
+          "title": "J",
+          "type": "integer"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "i",
+        "j",
+        "value"
+      ],
+      "title": "MutualInformationEdge",
+      "type": "object"
+    },
+    "PurityEntropy": {
+      "additionalProperties": false,
+      "description": "Represent Purity Entropy.",
+      "properties": {
+        "entropy": {
+          "title": "Entropy",
+          "type": "number"
+        },
+        "purity": {
+          "title": "Purity",
+          "type": "number"
+        },
+        "qubit": {
+          "title": "Qubit",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "qubit",
+        "purity",
+        "entropy"
+      ],
+      "title": "PurityEntropy",
+      "type": "object"
+    },
+    "ReducedDensityBlock": {
+      "additionalProperties": false,
+      "description": "Represent Reduced Density Block.",
+      "properties": {
+        "imag": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "title": "Imag",
+          "type": "array"
+        },
+        "qubits": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Qubits",
+          "type": "array"
+        },
+        "real": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "title": "Real",
+          "type": "array"
+        }
+      },
+      "required": [
+        "qubits",
+        "real",
+        "imag"
+      ],
+      "title": "ReducedDensityBlock",
+      "type": "object"
+    },
+    "TopKAmplitude": {
+      "additionalProperties": false,
+      "description": "Represent Top K Amplitude.",
+      "properties": {
+        "basis": {
+          "title": "Basis",
+          "type": "string"
+        },
+        "magnitude": {
+          "title": "Magnitude",
+          "type": "number"
+        },
+        "phase": {
+          "title": "Phase",
+          "type": "number"
+        }
+      },
+      "required": [
+        "basis",
+        "magnitude",
+        "phase"
+      ],
+      "title": "TopKAmplitude",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Represent Observable Snapshot.",
+  "properties": {
+    "bloch_vectors": {
+      "items": {
+        "$ref": "#/$defs/BlochVector"
+      },
+      "title": "Bloch Vectors",
+      "type": "array"
+    },
+    "entanglement_metrics": {
+      "$ref": "#/$defs/EntanglementMetrics"
+    },
+    "measurement_histogram": {
+      "items": {
+        "$ref": "#/$defs/MeasurementHistogramEntry"
+      },
+      "title": "Measurement Histogram",
+      "type": "array"
+    },
+    "purity_entropy": {
+      "items": {
+        "$ref": "#/$defs/PurityEntropy"
+      },
+      "title": "Purity Entropy",
+      "type": "array"
+    },
+    "reduced_density_blocks": {
+      "items": {
+        "$ref": "#/$defs/ReducedDensityBlock"
+      },
+      "title": "Reduced Density Blocks",
+      "type": "array"
+    },
+    "snapshot_id": {
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "step_index": {
+      "title": "Step Index",
+      "type": "integer"
+    },
+    "top_k_amplitudes": {
+      "items": {
+        "$ref": "#/$defs/TopKAmplitude"
+      },
+      "title": "Top K Amplitudes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "snapshot_id",
+    "step_index",
+    "bloch_vectors",
+    "purity_entropy",
+    "top_k_amplitudes",
+    "reduced_density_blocks",
+    "entanglement_metrics",
+    "measurement_histogram"
+  ],
+  "title": "ObservableSnapshot",
+  "type": "object"
+}

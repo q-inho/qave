@@ -1,0 +1,116 @@
+{
+  "$defs": {
+    "ConventionCheck": {
+      "additionalProperties": false,
+      "description": "Represent Convention Check.",
+      "properties": {
+        "details": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Details"
+        },
+        "name": {
+          "enum": [
+            "global_phase_invariance",
+            "basis_ordering_consistency"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "pass": {
+          "title": "Pass",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "pass"
+      ],
+      "title": "ConventionCheck",
+      "type": "object"
+    },
+    "ValidationCheck": {
+      "additionalProperties": false,
+      "description": "Represent Validation Check.",
+      "properties": {
+        "measured": {
+          "title": "Measured",
+          "type": "number"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "pass": {
+          "title": "Pass",
+          "type": "boolean"
+        },
+        "tolerance": {
+          "title": "Tolerance",
+          "type": "number"
+        }
+      },
+      "required": [
+        "name",
+        "tolerance",
+        "measured",
+        "pass"
+      ],
+      "title": "ValidationCheck",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Represent Validation Report.",
+  "properties": {
+    "checks": {
+      "items": {
+        "$ref": "#/$defs/ValidationCheck"
+      },
+      "title": "Checks",
+      "type": "array"
+    },
+    "contract_version": {
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "convention_checks": {
+      "items": {
+        "$ref": "#/$defs/ConventionCheck"
+      },
+      "title": "Convention Checks",
+      "type": "array"
+    },
+    "evidence_refs": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "overall_pass": {
+      "title": "Overall Pass",
+      "type": "boolean"
+    },
+    "request_id": {
+      "title": "Request Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "contract_version",
+    "request_id",
+    "checks",
+    "overall_pass",
+    "convention_checks"
+  ],
+  "title": "ValidationReport",
+  "type": "object"
+}

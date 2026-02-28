@@ -1,0 +1,149 @@
+{
+  "additionalProperties": false,
+  "description": "Represent Simulation Request.",
+  "properties": {
+    "algorithm_id": {
+      "enum": [
+        "bell",
+        "ghz",
+        "qft",
+        "teleportation",
+        "grover",
+        "vqe",
+        "custom"
+      ],
+      "title": "Algorithm Id",
+      "type": "string"
+    },
+    "animation_profile": {
+      "enum": [
+        "teaching_default",
+        "analysis_slow",
+        "presentation_fast"
+      ],
+      "title": "Animation Profile",
+      "type": "string"
+    },
+    "backend_preference": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Backend Preference"
+    },
+    "contract_version": {
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "measurement_mode": {
+      "const": "collapse",
+      "title": "Measurement Mode",
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "preview",
+        "validation"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "params": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "title": "Params",
+      "type": "object"
+    },
+    "precision_profile": {
+      "enum": [
+        "fast",
+        "balanced",
+        "strict"
+      ],
+      "title": "Precision Profile",
+      "type": "string"
+    },
+    "request_id": {
+      "title": "Request Id",
+      "type": "string"
+    },
+    "scalability_override": {
+      "anyOf": [
+        {
+          "enum": [
+            "auto",
+            "small",
+            "medium",
+            "large"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Scalability Override"
+    },
+    "seed": {
+      "title": "Seed",
+      "type": "integer"
+    },
+    "shot_count": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Shot Count"
+    },
+    "target_timeline_step_ms": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Timeline Step Ms"
+    }
+  },
+  "required": [
+    "contract_version",
+    "request_id",
+    "algorithm_id",
+    "mode",
+    "seed",
+    "precision_profile",
+    "measurement_mode",
+    "animation_profile"
+  ],
+  "title": "SimulationRequest",
+  "type": "object"
+}

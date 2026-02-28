@@ -1,0 +1,40 @@
+{
+  "additionalProperties": false,
+  "description": "Represent Backend Capability.",
+  "properties": {
+    "backend_id": {
+      "title": "Backend Id",
+      "type": "string"
+    },
+    "max_recommended_qubits": {
+      "title": "Max Recommended Qubits",
+      "type": "integer"
+    },
+    "supports_approximation": {
+      "title": "Supports Approximation",
+      "type": "boolean"
+    },
+    "supports_mixed_state": {
+      "title": "Supports Mixed State",
+      "type": "boolean"
+    },
+    "supports_noise": {
+      "title": "Supports Noise",
+      "type": "boolean"
+    },
+    "supports_pure_state": {
+      "title": "Supports Pure State",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "backend_id",
+    "supports_pure_state",
+    "supports_mixed_state",
+    "supports_noise",
+    "supports_approximation",
+    "max_recommended_qubits"
+  ],
+  "title": "BackendCapability",
+  "type": "object"
+}

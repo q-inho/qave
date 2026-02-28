@@ -1,0 +1,48 @@
+# Python caches and test artifacts.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# Python packaging/build outputs.
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Local virtual environments.
+.venv/
+backend/.venv/
+
+# Notebook checkpoints.
+.ipynb_checkpoints/
+
+# Generated local artifacts (viewer inputs, debug outputs).
+artifacts/
+qave_artifacts/
+docs/tutorials/qave_artifacts/
+viewer/processing_qave/exports/
+viewer/processing_qave/data/*
+!viewer/processing_qave/data/.gitkeep
+
+# Local environment and editor metadata.
+.env
+.env.*
+*.local
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS/JVM leftovers.
+.DS_Store
+Thumbs.db
+hs_err_pid*.log
+*.hprof

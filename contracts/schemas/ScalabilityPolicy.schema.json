@@ -1,0 +1,73 @@
+{
+  "$defs": {
+    "ApproximationPolicy": {
+      "additionalProperties": false,
+      "description": "Represent Approximation Policy.",
+      "properties": {
+        "allow_approx_backends": {
+          "title": "Allow Approx Backends",
+          "type": "boolean"
+        },
+        "fallback_backend_order": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fallback Backend Order",
+          "type": "array"
+        }
+      },
+      "required": [
+        "allow_approx_backends",
+        "fallback_backend_order"
+      ],
+      "title": "ApproximationPolicy",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Represent Scalability Policy.",
+  "properties": {
+    "approximation_policy": {
+      "$ref": "#/$defs/ApproximationPolicy"
+    },
+    "large_mode_features": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Large Mode Features",
+      "type": "array"
+    },
+    "medium_mode_features": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Medium Mode Features",
+      "type": "array"
+    },
+    "medium_n_max": {
+      "title": "Medium N Max",
+      "type": "integer"
+    },
+    "small_mode_features": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Small Mode Features",
+      "type": "array"
+    },
+    "small_n_max": {
+      "title": "Small N Max",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "small_n_max",
+    "medium_n_max",
+    "small_mode_features",
+    "medium_mode_features",
+    "large_mode_features",
+    "approximation_policy"
+  ],
+  "title": "ScalabilityPolicy",
+  "type": "object"
+}

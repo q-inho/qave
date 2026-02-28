@@ -1,0 +1,51 @@
+{
+  "$defs": {
+    "MeasurementOutcome": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Outcome.",
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "probability": {
+          "title": "Probability",
+          "type": "number"
+        }
+      },
+      "required": [
+        "label",
+        "probability"
+      ],
+      "title": "MeasurementOutcome",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Represent Measurement Model.",
+  "properties": {
+    "mode": {
+      "const": "collapse",
+      "title": "Mode",
+      "type": "string"
+    },
+    "outcomes": {
+      "items": {
+        "$ref": "#/$defs/MeasurementOutcome"
+      },
+      "title": "Outcomes",
+      "type": "array"
+    },
+    "selected_outcome": {
+      "title": "Selected Outcome",
+      "type": "string"
+    }
+  },
+  "required": [
+    "mode",
+    "outcomes",
+    "selected_outcome"
+  ],
+  "title": "MeasurementModel",
+  "type": "object"
+}

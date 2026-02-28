@@ -1,0 +1,1278 @@
+{
+  "$defs": {
+    "AmplitudeComplex": {
+      "additionalProperties": false,
+      "description": "Represent Amplitude Complex.",
+      "properties": {
+        "basis": {
+          "title": "Basis",
+          "type": "string"
+        },
+        "im": {
+          "title": "Im",
+          "type": "number"
+        },
+        "re": {
+          "title": "Re",
+          "type": "number"
+        }
+      },
+      "required": [
+        "basis",
+        "re",
+        "im"
+      ],
+      "title": "AmplitudeComplex",
+      "type": "object"
+    },
+    "AnimationKeyframe": {
+      "additionalProperties": false,
+      "description": "Represent Animation Keyframe.",
+      "properties": {
+        "frame_id": {
+          "title": "Frame Id",
+          "type": "string"
+        },
+        "phase": {
+          "enum": [
+            "pre_gate",
+            "apply_gate",
+            "settle"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "step_index": {
+          "title": "Step Index",
+          "type": "integer"
+        },
+        "t_normalized": {
+          "title": "T Normalized",
+          "type": "number"
+        }
+      },
+      "required": [
+        "frame_id",
+        "step_index",
+        "phase",
+        "t_normalized"
+      ],
+      "title": "AnimationKeyframe",
+      "type": "object"
+    },
+    "AnimationPhaseRatio": {
+      "additionalProperties": false,
+      "description": "Represent Animation Phase Ratio.",
+      "properties": {
+        "apply_gate": {
+          "title": "Apply Gate",
+          "type": "number"
+        },
+        "pre_gate": {
+          "title": "Pre Gate",
+          "type": "number"
+        },
+        "settle": {
+          "title": "Settle",
+          "type": "number"
+        }
+      },
+      "required": [
+        "pre_gate",
+        "apply_gate",
+        "settle"
+      ],
+      "title": "AnimationPhaseRatio",
+      "type": "object"
+    },
+    "AnimationTimelineSpec": {
+      "additionalProperties": false,
+      "description": "Represent Animation Timeline Spec.",
+      "properties": {
+        "contract_version": {
+          "title": "Contract Version",
+          "type": "string"
+        },
+        "default_step_duration_ms": {
+          "title": "Default Step Duration Ms",
+          "type": "integer"
+        },
+        "keyframes": {
+          "items": {
+            "$ref": "#/$defs/AnimationKeyframe"
+          },
+          "title": "Keyframes",
+          "type": "array"
+        },
+        "phase_ratio": {
+          "$ref": "#/$defs/AnimationPhaseRatio"
+        },
+        "sync_fence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sync Fence Ids",
+          "type": "array"
+        },
+        "timeline_id": {
+          "title": "Timeline Id",
+          "type": "string"
+        },
+        "total_steps": {
+          "title": "Total Steps",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "contract_version",
+        "timeline_id",
+        "total_steps",
+        "default_step_duration_ms",
+        "phase_ratio",
+        "keyframes",
+        "sync_fence_ids"
+      ],
+      "title": "AnimationTimelineSpec",
+      "type": "object"
+    },
+    "ApproximationPolicy": {
+      "additionalProperties": false,
+      "description": "Represent Approximation Policy.",
+      "properties": {
+        "allow_approx_backends": {
+          "title": "Allow Approx Backends",
+          "type": "boolean"
+        },
+        "fallback_backend_order": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fallback Backend Order",
+          "type": "array"
+        }
+      },
+      "required": [
+        "allow_approx_backends",
+        "fallback_backend_order"
+      ],
+      "title": "ApproximationPolicy",
+      "type": "object"
+    },
+    "BasisProbability": {
+      "additionalProperties": false,
+      "description": "Represent Basis Probability.",
+      "properties": {
+        "basis": {
+          "title": "Basis",
+          "type": "string"
+        },
+        "p": {
+          "title": "P",
+          "type": "number"
+        }
+      },
+      "required": [
+        "basis",
+        "p"
+      ],
+      "title": "BasisProbability",
+      "type": "object"
+    },
+    "BipartitionEntropy": {
+      "additionalProperties": false,
+      "description": "Represent Bipartition Entropy.",
+      "properties": {
+        "left": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Left",
+          "type": "array"
+        },
+        "right": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Right",
+          "type": "array"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "left",
+        "right",
+        "value"
+      ],
+      "title": "BipartitionEntropy",
+      "type": "object"
+    },
+    "BlochVector": {
+      "additionalProperties": false,
+      "description": "Represent Bloch Vector.",
+      "properties": {
+        "qubit": {
+          "title": "Qubit",
+          "type": "integer"
+        },
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        },
+        "z": {
+          "title": "Z",
+          "type": "number"
+        }
+      },
+      "required": [
+        "qubit",
+        "x",
+        "y",
+        "z"
+      ],
+      "title": "BlochVector",
+      "type": "object"
+    },
+    "BoundaryCheckpoint": {
+      "additionalProperties": false,
+      "description": "Represent Boundary Checkpoint.",
+      "properties": {
+        "gate_end_hash": {
+          "title": "Gate End Hash",
+          "type": "string"
+        },
+        "gate_start_hash": {
+          "title": "Gate Start Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "gate_start_hash",
+        "gate_end_hash"
+      ],
+      "title": "BoundaryCheckpoint",
+      "type": "object"
+    },
+    "EntanglementMetrics": {
+      "additionalProperties": false,
+      "description": "Represent Entanglement Metrics.",
+      "properties": {
+        "bipartition_entropy": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/BipartitionEntropy"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bipartition Entropy"
+        },
+        "mutual_information_edges": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/MutualInformationEdge"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mutual Information Edges"
+        }
+      },
+      "title": "EntanglementMetrics",
+      "type": "object"
+    },
+    "GateMatrixSample": {
+      "additionalProperties": false,
+      "description": "Represent Gate Matrix Sample.",
+      "properties": {
+        "gate_name": {
+          "title": "Gate Name",
+          "type": "string"
+        },
+        "imag": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "title": "Imag",
+          "type": "array"
+        },
+        "qubits": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Qubits",
+          "type": "array"
+        },
+        "real": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "title": "Real",
+          "type": "array"
+        }
+      },
+      "required": [
+        "gate_name",
+        "qubits",
+        "real",
+        "imag"
+      ],
+      "title": "GateMatrixSample",
+      "type": "object"
+    },
+    "MeasurementHistogramEntry": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Histogram Entry.",
+      "properties": {
+        "outcome": {
+          "title": "Outcome",
+          "type": "string"
+        },
+        "probability": {
+          "title": "Probability",
+          "type": "number"
+        },
+        "samples": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Samples"
+        }
+      },
+      "required": [
+        "outcome",
+        "probability"
+      ],
+      "title": "MeasurementHistogramEntry",
+      "type": "object"
+    },
+    "MeasurementModel": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Model.",
+      "properties": {
+        "mode": {
+          "const": "collapse",
+          "title": "Mode",
+          "type": "string"
+        },
+        "outcomes": {
+          "items": {
+            "$ref": "#/$defs/MeasurementOutcome"
+          },
+          "title": "Outcomes",
+          "type": "array"
+        },
+        "selected_outcome": {
+          "title": "Selected Outcome",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mode",
+        "outcomes",
+        "selected_outcome"
+      ],
+      "title": "MeasurementModel",
+      "type": "object"
+    },
+    "MeasurementOutcome": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Outcome.",
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "probability": {
+          "title": "Probability",
+          "type": "number"
+        }
+      },
+      "required": [
+        "label",
+        "probability"
+      ],
+      "title": "MeasurementOutcome",
+      "type": "object"
+    },
+    "MeasurementShotReplay": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Shot Replay.",
+      "properties": {
+        "measured_classical_targets": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Measured Classical Targets",
+          "type": "array"
+        },
+        "measured_qubits": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Measured Qubits",
+          "type": "array"
+        },
+        "outcome_states": {
+          "items": {
+            "$ref": "#/$defs/MeasurementShotReplayState"
+          },
+          "title": "Outcome States",
+          "type": "array"
+        },
+        "outcomes": {
+          "items": {
+            "$ref": "#/$defs/MeasurementShotReplayOutcome"
+          },
+          "title": "Outcomes",
+          "type": "array"
+        },
+        "sampling_seed": {
+          "title": "Sampling Seed",
+          "type": "integer"
+        },
+        "shot_events": {
+          "items": {
+            "$ref": "#/$defs/MeasurementShotReplayEvent"
+          },
+          "title": "Shot Events",
+          "type": "array"
+        },
+        "shots_total": {
+          "title": "Shots Total",
+          "type": "integer"
+        },
+        "source_step_index": {
+          "title": "Source Step Index",
+          "type": "integer"
+        },
+        "timeline": {
+          "$ref": "#/$defs/MeasurementShotReplayTimeline"
+        }
+      },
+      "required": [
+        "source_step_index",
+        "measured_qubits",
+        "measured_classical_targets",
+        "shots_total",
+        "sampling_seed",
+        "outcomes",
+        "outcome_states",
+        "shot_events",
+        "timeline"
+      ],
+      "title": "MeasurementShotReplay",
+      "type": "object"
+    },
+    "MeasurementShotReplayEvent": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Shot Replay Event.",
+      "properties": {
+        "outcome_label": {
+          "title": "Outcome Label",
+          "type": "string"
+        },
+        "shot_index": {
+          "title": "Shot Index",
+          "type": "integer"
+        },
+        "state_hash": {
+          "title": "State Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "shot_index",
+        "outcome_label",
+        "state_hash"
+      ],
+      "title": "MeasurementShotReplayEvent",
+      "type": "object"
+    },
+    "MeasurementShotReplayOutcome": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Shot Replay Outcome.",
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "probability": {
+          "title": "Probability",
+          "type": "number"
+        },
+        "state_hash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "State Hash"
+        }
+      },
+      "required": [
+        "label",
+        "probability"
+      ],
+      "title": "MeasurementShotReplayOutcome",
+      "type": "object"
+    },
+    "MeasurementShotReplayState": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Shot Replay State.",
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "reduced_density_blocks": {
+          "items": {
+            "$ref": "#/$defs/ReducedDensityBlock"
+          },
+          "title": "Reduced Density Blocks",
+          "type": "array"
+        },
+        "state_hash": {
+          "title": "State Hash",
+          "type": "string"
+        },
+        "top_k_amplitudes": {
+          "items": {
+            "$ref": "#/$defs/TopKAmplitude"
+          },
+          "title": "Top K Amplitudes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "label",
+        "state_hash",
+        "top_k_amplitudes",
+        "reduced_density_blocks"
+      ],
+      "title": "MeasurementShotReplayState",
+      "type": "object"
+    },
+    "MeasurementShotReplayTimeline": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Shot Replay Timeline.",
+      "properties": {
+        "camera_pullback_frames": {
+          "title": "Camera Pullback Frames",
+          "type": "integer"
+        },
+        "frames_per_shot": {
+          "title": "Frames Per Shot",
+          "type": "integer"
+        },
+        "histogram_project_frames": {
+          "title": "Histogram Project Frames",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "camera_pullback_frames",
+        "histogram_project_frames",
+        "frames_per_shot"
+      ],
+      "title": "MeasurementShotReplayTimeline",
+      "type": "object"
+    },
+    "MeasurementStepInfo": {
+      "additionalProperties": false,
+      "description": "Represent Measurement Step Info.",
+      "properties": {
+        "is_measurement": {
+          "title": "Is Measurement",
+          "type": "boolean"
+        },
+        "outcome_labels": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Outcome Labels"
+        }
+      },
+      "required": [
+        "is_measurement"
+      ],
+      "title": "MeasurementStepInfo",
+      "type": "object"
+    },
+    "MutualInformationEdge": {
+      "additionalProperties": false,
+      "description": "Represent Mutual Information Edge.",
+      "properties": {
+        "i": {
+          "title": "I",
+          "type": "integer"
+        },
+        "j": {
+          "title": "J",
+          "type": "integer"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        }
+      },
+      "required": [
+        "i",
+        "j",
+        "value"
+      ],
+      "title": "MutualInformationEdge",
+      "type": "object"
+    },
+    "ObservableSnapshot": {
+      "additionalProperties": false,
+      "description": "Represent Observable Snapshot.",
+      "properties": {
+        "bloch_vectors": {
+          "items": {
+            "$ref": "#/$defs/BlochVector"
+          },
+          "title": "Bloch Vectors",
+          "type": "array"
+        },
+        "entanglement_metrics": {
+          "$ref": "#/$defs/EntanglementMetrics"
+        },
+        "measurement_histogram": {
+          "items": {
+            "$ref": "#/$defs/MeasurementHistogramEntry"
+          },
+          "title": "Measurement Histogram",
+          "type": "array"
+        },
+        "purity_entropy": {
+          "items": {
+            "$ref": "#/$defs/PurityEntropy"
+          },
+          "title": "Purity Entropy",
+          "type": "array"
+        },
+        "reduced_density_blocks": {
+          "items": {
+            "$ref": "#/$defs/ReducedDensityBlock"
+          },
+          "title": "Reduced Density Blocks",
+          "type": "array"
+        },
+        "snapshot_id": {
+          "title": "Snapshot Id",
+          "type": "string"
+        },
+        "step_index": {
+          "title": "Step Index",
+          "type": "integer"
+        },
+        "top_k_amplitudes": {
+          "items": {
+            "$ref": "#/$defs/TopKAmplitude"
+          },
+          "title": "Top K Amplitudes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "snapshot_id",
+        "step_index",
+        "bloch_vectors",
+        "purity_entropy",
+        "top_k_amplitudes",
+        "reduced_density_blocks",
+        "entanglement_metrics",
+        "measurement_histogram"
+      ],
+      "title": "ObservableSnapshot",
+      "type": "object"
+    },
+    "PhaseWindow": {
+      "additionalProperties": false,
+      "description": "Represent Phase Window.",
+      "properties": {
+        "phase": {
+          "enum": [
+            "pre_gate",
+            "apply_gate",
+            "settle"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "t_end": {
+          "title": "T End",
+          "type": "number"
+        },
+        "t_start": {
+          "title": "T Start",
+          "type": "number"
+        }
+      },
+      "required": [
+        "phase",
+        "t_start",
+        "t_end"
+      ],
+      "title": "PhaseWindow",
+      "type": "object"
+    },
+    "PurityEntropy": {
+      "additionalProperties": false,
+      "description": "Represent Purity Entropy.",
+      "properties": {
+        "entropy": {
+          "title": "Entropy",
+          "type": "number"
+        },
+        "purity": {
+          "title": "Purity",
+          "type": "number"
+        },
+        "qubit": {
+          "title": "Qubit",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "qubit",
+        "purity",
+        "entropy"
+      ],
+      "title": "PurityEntropy",
+      "type": "object"
+    },
+    "ReducedDensityBlock": {
+      "additionalProperties": false,
+      "description": "Represent Reduced Density Block.",
+      "properties": {
+        "imag": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "title": "Imag",
+          "type": "array"
+        },
+        "qubits": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Qubits",
+          "type": "array"
+        },
+        "real": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "title": "Real",
+          "type": "array"
+        }
+      },
+      "required": [
+        "qubits",
+        "real",
+        "imag"
+      ],
+      "title": "ReducedDensityBlock",
+      "type": "object"
+    },
+    "ScalabilityPolicy": {
+      "additionalProperties": false,
+      "description": "Represent Scalability Policy.",
+      "properties": {
+        "approximation_policy": {
+          "$ref": "#/$defs/ApproximationPolicy"
+        },
+        "large_mode_features": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Large Mode Features",
+          "type": "array"
+        },
+        "medium_mode_features": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Medium Mode Features",
+          "type": "array"
+        },
+        "medium_n_max": {
+          "title": "Medium N Max",
+          "type": "integer"
+        },
+        "small_mode_features": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Small Mode Features",
+          "type": "array"
+        },
+        "small_n_max": {
+          "title": "Small N Max",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "small_n_max",
+        "medium_n_max",
+        "small_mode_features",
+        "medium_mode_features",
+        "large_mode_features",
+        "approximation_policy"
+      ],
+      "title": "ScalabilityPolicy",
+      "type": "object"
+    },
+    "StateSummary": {
+      "additionalProperties": false,
+      "description": "Represent State Summary.",
+      "properties": {
+        "entropy": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entropy"
+        },
+        "norm": {
+          "title": "Norm",
+          "type": "number"
+        }
+      },
+      "required": [
+        "norm"
+      ],
+      "title": "StateSummary",
+      "type": "object"
+    },
+    "StepEvolutionSample": {
+      "additionalProperties": false,
+      "description": "Represent Step Evolution Sample.",
+      "properties": {
+        "gate_matrix": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GateMatrixSample"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "measurement_histogram": {
+          "items": {
+            "$ref": "#/$defs/MeasurementHistogramEntry"
+          },
+          "title": "Measurement Histogram",
+          "type": "array"
+        },
+        "phase": {
+          "enum": [
+            "pre_gate",
+            "apply_gate",
+            "settle"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "reduced_density_blocks": {
+          "items": {
+            "$ref": "#/$defs/ReducedDensityBlock"
+          },
+          "title": "Reduced Density Blocks",
+          "type": "array"
+        },
+        "sample_index": {
+          "title": "Sample Index",
+          "type": "integer"
+        },
+        "state_hash": {
+          "title": "State Hash",
+          "type": "string"
+        },
+        "t_normalized": {
+          "title": "T Normalized",
+          "type": "number"
+        },
+        "top_k_amplitudes": {
+          "items": {
+            "$ref": "#/$defs/TopKAmplitude"
+          },
+          "title": "Top K Amplitudes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "sample_index",
+        "phase",
+        "t_normalized",
+        "state_hash",
+        "top_k_amplitudes",
+        "reduced_density_blocks",
+        "measurement_histogram"
+      ],
+      "title": "StepEvolutionSample",
+      "type": "object"
+    },
+    "TopKAmplitude": {
+      "additionalProperties": false,
+      "description": "Represent Top K Amplitude.",
+      "properties": {
+        "basis": {
+          "title": "Basis",
+          "type": "string"
+        },
+        "magnitude": {
+          "title": "Magnitude",
+          "type": "number"
+        },
+        "phase": {
+          "title": "Phase",
+          "type": "number"
+        }
+      },
+      "required": [
+        "basis",
+        "magnitude",
+        "phase"
+      ],
+      "title": "TopKAmplitude",
+      "type": "object"
+    },
+    "TraceAnnotation": {
+      "additionalProperties": false,
+      "description": "Represent Trace Annotation.",
+      "properties": {
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "message"
+      ],
+      "title": "TraceAnnotation",
+      "type": "object"
+    },
+    "TraceStep": {
+      "additionalProperties": false,
+      "description": "Represent Trace Step.",
+      "properties": {
+        "amplitudes": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/AmplitudeComplex"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amplitudes"
+        },
+        "boundary_checkpoint": {
+          "$ref": "#/$defs/BoundaryCheckpoint"
+        },
+        "evolution_samples": {
+          "items": {
+            "$ref": "#/$defs/StepEvolutionSample"
+          },
+          "title": "Evolution Samples",
+          "type": "array"
+        },
+        "measurement": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MeasurementStepInfo"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "operation_controls": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Operation Controls"
+        },
+        "operation_id": {
+          "title": "Operation Id",
+          "type": "string"
+        },
+        "operation_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Operation Name"
+        },
+        "operation_qubits": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Operation Qubits"
+        },
+        "operation_targets": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Operation Targets"
+        },
+        "phase_windows": {
+          "items": {
+            "$ref": "#/$defs/PhaseWindow"
+          },
+          "title": "Phase Windows",
+          "type": "array"
+        },
+        "probabilities": {
+          "items": {
+            "$ref": "#/$defs/BasisProbability"
+          },
+          "title": "Probabilities",
+          "type": "array"
+        },
+        "state_summary": {
+          "$ref": "#/$defs/StateSummary"
+        },
+        "step_index": {
+          "title": "Step Index",
+          "type": "integer"
+        },
+        "transition_hints": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TransitionHints"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "step_index",
+        "operation_id",
+        "state_summary",
+        "probabilities",
+        "phase_windows",
+        "boundary_checkpoint"
+      ],
+      "title": "TraceStep",
+      "type": "object"
+    },
+    "TransitionHints": {
+      "additionalProperties": false,
+      "description": "Represent Transition Hints.",
+      "properties": {
+        "emphasis_targets": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Emphasis Targets"
+        },
+        "interpolation": {
+          "enum": [
+            "linear",
+            "ease_in_out"
+          ],
+          "title": "Interpolation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "interpolation"
+      ],
+      "title": "TransitionHints",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Represent Algorithm Trace.",
+  "properties": {
+    "algorithm_id": {
+      "enum": [
+        "bell",
+        "ghz",
+        "qft",
+        "teleportation",
+        "grover",
+        "vqe",
+        "custom"
+      ],
+      "title": "Algorithm Id",
+      "type": "string"
+    },
+    "annotations": {
+      "items": {
+        "$ref": "#/$defs/TraceAnnotation"
+      },
+      "title": "Annotations",
+      "type": "array"
+    },
+    "contract_version": {
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "measurement_model": {
+      "$ref": "#/$defs/MeasurementModel"
+    },
+    "measurement_shot_replay": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MeasurementShotReplay"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "observable_snapshots": {
+      "items": {
+        "$ref": "#/$defs/ObservableSnapshot"
+      },
+      "title": "Observable Snapshots",
+      "type": "array"
+    },
+    "scalability_policy": {
+      "$ref": "#/$defs/ScalabilityPolicy"
+    },
+    "steps": {
+      "items": {
+        "$ref": "#/$defs/TraceStep"
+      },
+      "title": "Steps",
+      "type": "array"
+    },
+    "timeline": {
+      "$ref": "#/$defs/AnimationTimelineSpec"
+    },
+    "view_sync_groups": {
+      "items": {
+        "type": "string"
+      },
+      "title": "View Sync Groups",
+      "type": "array"
+    }
+  },
+  "required": [
+    "contract_version",
+    "algorithm_id",
+    "steps",
+    "measurement_model",
+    "observable_snapshots",
+    "scalability_policy",
+    "timeline",
+    "view_sync_groups"
+  ],
+  "title": "AlgorithmTrace",
+  "type": "object"
+}
