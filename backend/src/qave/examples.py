@@ -1,7 +1,7 @@
 """Example quantum circuits for demos and documentation.
 
 These helpers are intentionally **not** re-exported from the top-level `qave` package.
-The product-facing API should remain ingestion-first (Qiskit/OpenQASM in -> trace/animation out),
+The API should remain ingestion-first (Qiskit/OpenQASM in -> trace/animation out),
 while example circuits live under `qave.examples`.
 """
 

@@ -1,6 +1,6 @@
 """Compatibility exports for legacy qave_backend imports.
 
-Primary product APIs now live under the `qave` package namespace.
+Primary APIs now live under the `qave` package namespace.
 """
 
 from qave_backend.simulator.backend_a import simulate_backend_a
